@@ -44,6 +44,10 @@ ship_image = pygame.transform.scale(ship_image, (ship_width, ship_heigth))
 explosion_image = pygame.image.load("Images/explosion.png").convert_alpha()
 explosion_image = pygame.transform.scale(explosion_image, (explosion_width, explosion_height))
 
+# # Load Star Image 
+# star_image = pygame.image.load("Images/star.star.png").convert_alpha()
+# star_image = pygame.transform.scale(star_image, (star_width, star_height))
+
 def draw(player, elapsed_time, stars, explosion):
     WIN.blit(background, (0, 0))
 
