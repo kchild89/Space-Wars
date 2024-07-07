@@ -20,13 +20,13 @@ start_sound = pygame.mixer.Sound("Audio/start-audio.mp3")
 
 
 # Ship Size and Velocity
-ship_width = 80
-ship_heigth = 80
+ship_width = 100
+ship_heigth = 100
 ship_velocity = 18
 
 # Star Size and Velocity
-star_width = 10
-star_height = 20
+star_width = 35
+star_height = 160
 star_velocity = 14
 
 # Explosion Size
@@ -44,9 +44,9 @@ ship_image = pygame.transform.scale(ship_image, (ship_width, ship_heigth))
 explosion_image = pygame.image.load("Images/explosion.png").convert_alpha()
 explosion_image = pygame.transform.scale(explosion_image, (explosion_width, explosion_height))
 
-# # Load Star Image 
-# star_image = pygame.image.load("Images/star.star.png").convert_alpha()
-# star_image = pygame.transform.scale(star_image, (star_width, star_height))
+# Load Star Image 
+star_image = pygame.image.load("Images/star.png").convert_alpha()
+star_image = pygame.transform.scale(star_image, (star_width, star_height))
 
 def draw(player, elapsed_time, stars, explosion):
     WIN.blit(background, (0, 0))
@@ -54,12 +54,16 @@ def draw(player, elapsed_time, stars, explosion):
     time_text = font.render(f"Time: {round(elapsed_time)}s", 1, "white")
     WIN.blit(time_text, (10, 10))
 
-    # Draw ship image
+    # Draw Ship Image
     WIN.blit(ship_image, (player.x, player.y))
-
+    
+    # Draw Star Image
     for star in stars:
-        pygame.draw.rect(WIN, "green", star)
-        
+        WIN.blit(star_image, (star.x, star.y))
+
+     # Draw explosion if it exists
+    if explosion:
+        WIN.blit(explosion_image, (explosion[0], explosion[1]))    
     
 
     pygame.display.update()
@@ -88,7 +92,7 @@ def main():
         elapsed_time = time.time() - start_time
 
         if star_count > star_add_increment:
-            for _ in range(4):
+            for _ in range(3):
                 star_x = random.randint(0, WIDTH - star_width)
                 star = pygame.Rect(star_x, -star_height,
                                    star_width, star_height)
