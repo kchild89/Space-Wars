@@ -26,7 +26,7 @@ ship_velocity = 18
 
 # Star Size and Velocity
 star_width = 35
-star_height = 160
+star_height = 150
 star_velocity = 14
 
 # Explosion Size
